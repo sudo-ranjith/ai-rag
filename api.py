@@ -21,6 +21,16 @@ class QueryRequest(BaseModel):
 class QueryResponse(BaseModel):
     answer: str
 
+# basic health check route
+@router.get("/")
+async def health_check():
+    result = {  
+              "message": "RAG Service is up and running",
+                "version": "1.0.0"
+                }
+    return result
+
+
 @router.post("/upload-text")
 async def upload_text(file: UploadFile = File(...)):
     try:
